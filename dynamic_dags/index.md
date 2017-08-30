@@ -21,7 +21,7 @@ In our example settings array we have four properties on each object.
     * The actual overriding of settings takes place in the following code but anything similar will work.
     ```replaced_args = {k: default_args[k] if customer.get(k, None) is None else customer[k] for k in default_args}```
 * Enabled
-    **TODO: Show programmatic pausing of a DAG using this property.**
+    * **TODO: Show programmatic pausing of a DAG using this property.**
 
 ### Create DAG Function
 In here we handle the overriding of ```default_args```, the naming of the unique DAG and the creation of the DAG object. Which is handed off to the global DAGBag in the settings array loop.
