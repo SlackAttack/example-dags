@@ -10,8 +10,8 @@ This DAG is meant to represent the various concepts of creating a dynamic DAG fi
 ### Context
 This DAG file provides an example of dynamically creating multiple DAGs each performing a similar set of work for many customers. A real world example may be creating many DAGs (one for each customer) that move clickstream data from each customers unique source to a singular location.
 ### Assumptions
-    * Each Customer Will Have a Unique Source Connection
-    * Actual Workflow will be represented by DummyOperators
+* Each Customer Will Have a Unique Source Connection
+* Actual Workflow will be represented by DummyOperators
 
 ## Concepts and Features
 ### Settings Array
