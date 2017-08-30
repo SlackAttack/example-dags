@@ -34,4 +34,4 @@ Using the above example, creating a new DAG is as easy as adding to the Settings
 We recommend creating your connection dependencies before creating a new DAG. Doing otherwise will result in each created DAG (that is missing a connection) to fail. You can also create the connection programmatically by passing in connection information through the Settings Array that is used to create the DAGs themselves. If done this way, please consider encrpytion on any sensitive information being passed through the array.
 
 ### Deleting A DAG
-At time of writing (deleting of a DAG)[https://github.com/apache/incubator-airflow/pull/2199] is still an open issue with the Airflow repo. Deleting a DAG is not recommended until officially supported by Airflow. Until then the recommendation is to pause DAG.
+At time of writing [deleting of a DAG](https://github.com/apache/incubator-airflow/pull/2199) is still an open issue with the Airflow repo. Deleting a DAG is not recommended until officially supported by Airflow. Until then the recommendation is to pause DAG.
