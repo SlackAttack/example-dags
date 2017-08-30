@@ -11,13 +11,13 @@ Depending on who will be controlling the creation of dynamic DAGs in your busine
 
 In our example settings array we have four properties on each object.
 * Customer Name
-    A human readable customer name.
+    * A human readable customer name.
 * Customer Id
-    A valid string Id. This will be used for the creation of a unique DAG name and connection names.
+    * A valid string Id. This will be used for the creation of a unique DAG name and connection names.
 * Email
-    The email array is an example of an override setting we are passing into DAG creation. In this example it is an array of emails that is used to override the ```default_args``` setting object. In order to override the settings of ```default_args``` the property names must be identical in order for ovverride to work.
+    * The email array is an example of an override setting we are passing into DAG creation. In this example it is an array of emails that is used to override the ```default_args``` setting object. In order to override the settings of ```default_args``` the property names must be identical in order for ovverride to work.
 
-    The actual overriding of settings takes place in the following code but anything similar will work.
+    * The actual overriding of settings takes place in the following code but anything similar will work.
     ```replaced_args = {k: default_args[k] if customer.get(k, None) is None else customer[k] for k in default_args}```
 * Enabled
     **TODO: Show programmatic pausing of a DAG using this property.**
