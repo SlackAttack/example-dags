@@ -1,16 +1,3 @@
-"""Example DAG Detailing Examples of Dynamic Dag Creation
-
-This DAG File creates DAGs in Airflow Dynamically for the following scenario.
-
-We have an ever-growing list of customers that each have a similar workflow need.
-
-Assumptions
-    - Each Customer Will Have a Unique Source Connection
-    - Each Customer Source Will have a Single Destination Connection
-    - Actual Workflow will be represented by DummyOperators 
-    - We will never need to delete a customer dag file 
-"""
-
 import json
 import os
 
@@ -61,33 +48,39 @@ def create_dag(customer):
     }
 
     # This allows DAG parameters to be passed in from the Variable if a customer needs something specific overridden in their DAG
-    # See email example
+    # Consider how email being passed in from the customer object overrides email in the resulting replaced_args object
     replaced_args = {k: default_args[k] if customer.get(k, None) is None else customer[k] for k in default_args}
 
     dag_id = '{base_name}_{id}'.format(base_name='load_clickstream_data',id=customer['customer_id'])
     return DAG(dag_id=dag_id, default_args=replaced_args)
 
 for cust in CUSTOMERS: # Loop customers array of containing customer objects
-    dag = create_dag(cust)    
-    globals()[dag.dag_id] = dag
+    if cust['enabled']:
+        dag = create_dag(cust)    
+        globals()[dag.dag_id] = dag
 
-    extract = DummyOperator(
-        task_id='extract_data',
-        dag=dag
-    )
+        extract = DummyOperator(
+            task_id='extract_data',
+            dag=dag
+        )
 
-    transform = DummyOperator(
-        task_id='transform_data',
-        dag=dag
-    )
+        transform = DummyOperator(
+            task_id='transform_data',
+            dag=dag
+        )
 
-    load = DummyOperator(
-        task_id='load_data',
-        dag=dag
-    )
+        load = DummyOperator(
+            task_id='load_data',
+            dag=dag
+        )
 
-    extract.set_downstream(transform)
-    transform.set_downstream(load)
+        extract.set_downstream(transform)
+        transform.set_downstream(load)
+    
+    else:
+        # TODO Create but programmatically pause
+        pass
+
 
 
 

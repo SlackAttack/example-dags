@@ -6,6 +6,13 @@ nav_title: Creating Dynamic DAGs
 # Standard Dynamic Dag
 This DAG is meant to represent the various concepts of creating a dynamic DAG file. At a high-level this DAG file leverages an array of DAG level settings, loops through the array, creates DAG objects and adds them to the global DagBag.
 
+## Context and Assumptions
+### Context
+This DAG file provides an example of dynamically creating multiple DAGs each performing a similar set of work for many customers. A real world example may be creating many DAGs (one for each customer) that move clickstream data from each customers unique source to a singular location.
+### Assumptions
+    * Each Customer Will Have a Unique Source Connection
+    * Actual Workflow will be represented by DummyOperators
+
 ## Concepts and Features
 ### Settings Array
 Depending on who will be controlling the creation of dynamic DAGs in your business, this variable can sit directly in the DAG file itself or it can pulled from Airflow Variables. If done this way, it may be easier for a business user to modify the JSON variable themselves in order to create a new dynamic DAG.
