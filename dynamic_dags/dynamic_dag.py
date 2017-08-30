@@ -1,15 +1,7 @@
-import json
-import os
-
 from datetime import datetime, timedelta
 from airflow.models import DAG
 from airflow.models import Variable
-from airflow.operators.subdag_operator import SubDagOperator
 from airflow.operators.dummy_operator import DummyOperator
-from airflow.operators.postgres_operator import PostgresOperator
-from airflow.operators.docker_operator import DockerOperator
-from airflow.models import Connection
-from airflow.utils.db import provide_session
 
 ## Create JSON Var if it doesn't exist
 ## Get JSON Var
