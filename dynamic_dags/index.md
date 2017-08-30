@@ -6,7 +6,8 @@ nav_title: Creating Dynamic DAGs
 # Standard Dynamic Dag
 This DAG is meant to represent the various concepts of creating a dynamic DAG file. At a high-level this DAG file leverages an array of DAG level settings, loops through the array, creates DAG objects and adds them to the global DagBag.
 
-## Settings Array
+## Concepts and Features
+### Settings Array
 Depending on who will be controlling the creation of dynamic DAGs in your business, this variable can sit directly in the DAG file itself or it can pulled from Airflow Variables. If done this way, it may be easier for a business user to modify the JSON variable themselves in order to create a new dynamic DAG.
 
 In our example settings array we have four properties on each object.
@@ -22,18 +23,15 @@ In our example settings array we have four properties on each object.
 * Enabled
     **TODO: Show programmatic pausing of a DAG using this property.**
 
-#Gotchas
+### Create DAG Function
+In here we handle the overriding of ```default_args```, the naming of the unique DAG and the creation of the DAG object. Which is handed off to the global DAGBag in the settings array loop.
 
-Things to consider:
-    - Creating new DAGs with JSON Variable
-        - Consider facebook connection it relies on
-    - Disabling a DAG via flag on JSON Variable
-        - Creating houston wrapper to get and set variables
-    - Can you delete a DAG that is created via this method?
-    - Startdate and Schedule Interval need to be considered
-    - Do we recommend pausing a dyDAG that is not in use?
-        - Pausing/Unpause DAG from DAG via CLI
+### Creating A New DAG
+Using the above example, creating a new DAG is as easy as adding to the Settings Array. Next time that the DAG runs it will pick up the new object and create the new DAG.
 
-    - Gotchas
-        - Changing the name of the variable used to name the dag will result in a new DAG being created
-        - Changing the start date
+## Gotchas
+### New Connections
+We recommend creating your connection dependencies before creating a new DAG. Doing otherwise will result in each created DAG (that is missing a connection) to fail. You can also create the connection programmatically by passing in connection information through the Settings Array that is used to create the DAGs themselves. If done this way, please consider encrpytion on any sensitive information being passed through the array.
+
+### Deleting A DAG
+At time of writing (deleting of a DAG)[https://github.com/apache/incubator-airflow/pull/2199] is still an open issue with the Airflow repo. Deleting a DAG is not recommended until officially supported by Airflow. Until then the recommendation is to pause DAG.
