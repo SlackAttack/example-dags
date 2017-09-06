@@ -15,7 +15,7 @@ This DAG file provides an example of dynamically creating multiple DAGs each per
 
 ## Concepts and Features
 ### Settings Array
-Depending on who will be controlling the creation of dynamic DAGs in your business, this variable can sit directly in the DAG file itself or it can pulled from Airflow Variables. If done this way, it may be easier for a business user to modify the JSON variable themselves in order to create a new dynamic DAG.
+Depending on who will be controlling the creation of dynamic DAGs in your business, this variable can sit directly in the DAG file itself or it can pulled from [Airflow Variables](https://pythonhosted.org/airflow/concepts.html#variables). If done this way, it may be easier for a business user to modify the JSON variable themselves in order to create a new dynamic DAG.
 
 In our example settings array we have four properties on each object.
 * Customer Name
