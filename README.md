@@ -1,7 +1,4 @@
----
-post_title: Astronomer Detailed Example DAGs
-nav_title: Astronomer Detailed Example DAGs
----
+# NOTE: This repo has been deprecated. Please refer to https://github.com/airflow-plugins/Example-Airflow-DAGs.
 
 # Astronomer Detailed Example DAGs and Concepts
 We have made it our business to know the ins and outs of Airflow. Once you get outside of the basic features some things may not be obvious, so we want to share our experiences and expertise with you.
